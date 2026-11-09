@@ -72,7 +72,7 @@ const SVG = `
   ${link(1)}
   ${[0, 1, 2].map(flyingSlip).join('')}
   <rect class="c-scan" x="22" y="122" width="176" height="5" rx="2" fill="#3DD6B0"/>
-  <text class="c-verdict t-red bold mid" x="320" y="420">the chain is broken, and everyone can see where</text>
+  <text class="c-verdict t-red bold mid" x="320" y="420">everything after the edit is cut off</text>
 </svg>`;
 
 function buildTimeline(svg) {
@@ -111,14 +111,15 @@ function buildTimeline(svg) {
     .to(q('.c-block-0 .c-hash'), { opacity: 0, duration: 0.12 }, 3.6)
     .to(q('.c-hash-bad'), { opacity: 1, duration: 0.12 }, 3.65);
 
-  // Step 5 (4 → 5): the links snap, one after another.
+  // Step 5 (4 → 5): the link to the next block snaps.
   tl.to(q('.c-link-0'), { stroke: RED, duration: 0.12 }, 4.1)
     .to(q('.c-snap-0'), { opacity: 1, duration: 0.1 }, 4.15)
     .to(q('.c-block-1 .c-prev'), { fill: RED, duration: 0.12 }, 4.25)
     .to(q('.c-block-1 .c-frame'), { stroke: RED, duration: 0.12 }, 4.3)
-    .to(q('.c-link-1'), { stroke: RED, duration: 0.12 }, 4.5)
-    .to(q('.c-snap-1'), { opacity: 1, duration: 0.1 }, 4.55)
-    .to(q('.c-block-2 .c-frame'), { stroke: RED, duration: 0.12 }, 4.65)
+    // Blocks 102 and 103 still fit each other, but they no longer attach
+    // to anything, so they are cut off together.
+    .to(q('.c-block-2 .c-frame'), { stroke: RED, duration: 0.12 }, 4.5)
+    .to(q('.c-block-1, .c-block-2, .c-link-1'), { opacity: 0.45, duration: 0.2 }, 4.6)
     .to(q('.c-verdict'), { opacity: 1, duration: 0.2 }, 4.78);
 
   return tl;

@@ -79,7 +79,7 @@ const SVG = `
     <text class="mono" x="152" y="414">${ADDRESS}</text>
     <text class="mono t-orange bold end" x="488" y="414">0.5 BTC</text>
   </g>
-  <path class="w-link outline s-teal" pathLength="1" d="M520 232 C520 300 420 300 330 396"/>
+  <path class="w-link outline s-teal" pathLength="1" d="M598 232 C598 340 572 404 514 406"/>
 </svg>`;
 
 // A stand-in "random number being picked": the digits tumble, then settle.
