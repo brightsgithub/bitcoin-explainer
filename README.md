@@ -14,6 +14,8 @@ python3 -m http.server 8000
 
 Then open <http://localhost:8000>. (Opening `index.html` directly won't work: browsers only load JavaScript modules over http.)
 
+To see the reduced-motion version without changing your device settings, open <http://localhost:8000/?reduced-motion>.
+
 ## How it is organised
 
 ```

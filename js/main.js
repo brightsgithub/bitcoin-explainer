@@ -3,8 +3,9 @@
 
 import { initIntro } from './scenes/00-intro.js';
 import { initProblem } from './scenes/01-problem.js';
+import { initTransaction } from './scenes/03-transaction.js';
 
-const scenes = [initIntro, initProblem];
+const scenes = [initIntro, initProblem, initTransaction];
 
 if (window.gsap && window.ScrollTrigger) {
   gsap.registerPlugin(ScrollTrigger);

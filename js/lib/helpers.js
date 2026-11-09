@@ -4,9 +4,14 @@
 const REDUCED = '(prefers-reduced-motion: reduce)';
 const NARROW = '(max-width: 799px)'; // keep in sync with css/style.css
 
+// Add ?reduced-motion to the page address to preview the reduced-motion
+// version without changing your device settings.
+const FORCE_REDUCED = new URLSearchParams(window.location.search).has('reduced-motion');
+if (FORCE_REDUCED) document.documentElement.classList.add('reduced-motion');
+
 /** True when the viewer has asked their device for less motion. */
 export function reducedMotion() {
-  return window.matchMedia(REDUCED).matches;
+  return FORCE_REDUCED || window.matchMedia(REDUCED).matches;
 }
 
 /**
@@ -52,7 +57,8 @@ export function driveScene(section, timeline) {
 
   const mm = gsap.matchMedia();
   mm.add({ reduced: REDUCED, narrow: NARROW, always: '(min-width: 0px)' }, (ctx) => {
-    const { reduced, narrow } = ctx.conditions;
+    const { narrow } = ctx.conditions;
+    const reduced = FORCE_REDUCED || ctx.conditions.reduced;
     let triggers = [];
 
     const sync = () => {
@@ -78,9 +84,14 @@ export function driveScene(section, timeline) {
         start: narrow ? 'top 97%' : 'top 85%',
         end: narrow ? 'top 62%' : 'top 45%',
         onUpdate: sync,
-        onRefresh: sync,
       })
     );
+
+    // Re-sync once ScrollTrigger has finished measuring every caption
+    // (on load, on resize, and when the browser restores a scroll
+    // position after a reload part-way down the page).
+    const resync = () => requestAnimationFrame(sync);
+    ScrollTrigger.addEventListener('refresh', resync);
 
     // Highlight whichever caption is currently being read.
     steps.forEach((step) =>
@@ -93,5 +104,6 @@ export function driveScene(section, timeline) {
     );
 
     sync();
+    return () => ScrollTrigger.removeEventListener('refresh', resync);
   });
 }
