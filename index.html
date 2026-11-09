@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How Bitcoin works</title>
+  <meta name="description" content="An interactive, scroll-driven explainer of how Bitcoin works, in plain English.">
+  <meta name="theme-color" content="#0E1116">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ───────────── Title ───────────── -->
+  <header class="hero" id="intro">
+    <p class="eyebrow">An interactive explainer</p>
+    <h1>How Bitcoin works</h1>
+    <p class="hero__lede">Money that no bank or government runs, kept honest by maths and by thousands of computers checking each other. Scroll to see how.</p>
+    <div class="hero__art" data-stage></div>
+    <p class="hero__hint" aria-hidden="true">Scroll <span>↓</span></p>
+  </header>
+
+  <main>
+
+    <!-- ───────────── Scene 1: the problem ───────────── -->
+    <section class="scene" id="problem">
+      <header class="scene__head">
+        <p class="eyebrow">Scene 1</p>
+        <h2>The problem: money without a bank</h2>
+      </header>
+
+      <div class="scene__body">
+        <div class="scene__stage" data-stage></div>
+
+        <div class="scene__steps">
+          <article class="step">
+            <p>Cash is simple. If Alice hands Bob a banknote, Bob has it and Alice doesn't. It can't be in two places at once.</p>
+          </article>
+          <article class="step">
+            <p>Digital things aren't like that. A photo, a song, a file: each can be copied perfectly, as many times as you like.</p>
+          </article>
+          <article class="step">
+            <p>So if money were just a file, Alice could pay Bob <em>and</em> Carol with the very same coin. This is called <strong>double spending</strong>.</p>
+          </article>
+          <article class="step">
+            <p>Today, banks prevent this. A bank keeps a <strong>ledger</strong>, a record of who owns what, and refuses any payment that spends the same money twice.</p>
+          </article>
+          <article class="step">
+            <p>That works, but everyone has to trust the bank. Bitcoin's idea: give <em>everyone</em> a copy of the ledger, and a way to agree on it, so that no one needs to be in charge.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="try">
+        <p class="eyebrow">Try it</p>
+        <h3>Spend the same coin twice</h3>
+        <p>Alice has one digital coin. Pay Bob, then pay Carol. Then switch the bank on and try again.</p>
+        <div data-demo></div>
+      </div>
+    </section>
+
+    <!-- ───────────── Scene 3: a transaction ───────────── -->
+    <section class="scene" id="transaction">
+      <header class="scene__head">
+        <p class="eyebrow">Scene 3</p>
+        <h2>A transaction: sending coins</h2>
+      </header>
+
+      <div class="scene__body">
+        <div class="scene__stage" data-stage></div>
+
+        <div class="scene__steps">
+          <article class="step">
+            <p>Alice wants to send Bob 0.3 bitcoin. Her wallet holds one coin worth 0.5.</p>
+          </article>
+          <article class="step">
+            <p>She writes a <strong>transaction</strong>: a short public message saying which coin she is spending and where the value should go.</p>
+          </article>
+          <article class="step">
+            <p>She signs it with her <strong>private key</strong>. The key never leaves her wallet. Only the signature is attached.</p>
+          </article>
+          <article class="step">
+            <p>Anyone can check that signature using Alice's public key. It proves the coin's owner approved exactly this message, and nothing else.</p>
+          </article>
+          <article class="step">
+            <p>A coin is always spent whole. 0.3 goes to Bob, 0.19 comes back to Alice as change, and 0.01 is left as a fee for the miner who confirms it.</p>
+          </article>
+          <article class="step">
+            <p>Nothing is final yet. The transaction is broadcast to the network, where it waits to be confirmed. Until then, the payment is only pending.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="try">
+        <p class="eyebrow">Try it</p>
+        <h3>Change a signed transaction</h3>
+        <p>Alice has signed the message below. Edit the amount, as a thief might, and watch what happens to the signature check.</p>
+        <div data-demo></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>Preview build: scenes 1 and 3. Still to come: wallets and keys, the mempool, hashing, blocks and the chain, mining, the network, and supply.</p>
+  </footer>
+
+  <noscript>
+    <p class="noscript">The diagrams on this page are drawn with JavaScript. The captions above still tell the story without it.</p>
+  </noscript>
+
+  <!-- GSAP + ScrollTrigger from a CDN, pinned to an exact version. -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
