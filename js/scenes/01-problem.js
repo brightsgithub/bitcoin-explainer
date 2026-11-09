@@ -276,9 +276,8 @@ function initDemo(root) {
 
 // ── Start ──────────────────────────────────────────────────────────────────
 
-export function initProblem() {
-  const section = document.querySelector('#problem');
-  const svg = mountStage(section.querySelector('.scene__body'), SVG);
+export function init(section) {
+  const svg = mountStage(section, SVG);
   driveScene(section, buildTimeline(svg));
   initDemo(section.querySelector('[data-demo]'));
 }

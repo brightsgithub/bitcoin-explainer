@@ -265,6 +265,67 @@ svg .avatar__name { text-anchor: middle; fill: var(--muted); }
 .sig__verdict.is-good { color: var(--teal); }
 .sig__verdict.is-bad { color: var(--red); }
 
+/* Shared building blocks for the demos */
+.field { display: block; }
+.field > span { display: block; margin-bottom: 6px; font-size: 0.95rem; color: var(--muted); }
+.field input[type="text"], .select {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 12px;
+  border: 2px solid var(--text);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text);
+  font: 1.05rem var(--mono);
+}
+.field--inline { display: inline-flex; align-items: center; gap: 10px; }
+.field--inline > span { margin: 0; }
+.select { width: auto; min-height: 44px; }
+.range { width: 100%; min-height: 44px; accent-color: var(--orange); }
+
+.readout { margin-top: 14px; }
+.readout__label { display: block; font-size: 0.9rem; color: var(--muted); }
+.readout__value { display: block; margin-top: 2px; font-family: var(--mono); font-size: 1rem; overflow-wrap: anywhere; }
+.readout.is-good .readout__value { color: var(--teal); }
+.readout.is-bad .readout__value { color: var(--red); }
+.readout.is-secret .readout__label { color: var(--red); }
+.readout.is-public .readout__label { color: var(--teal); }
+.hl { color: var(--orange); }
+
+.note { margin-top: 14px; font-size: 0.9rem; color: var(--muted); }
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+.stat__num { display: block; font: 600 1.5rem var(--mono); overflow-wrap: anywhere; }
+.stat__label { display: block; font-size: 0.9rem; color: var(--muted); }
+
+/* Mempool demo (scene 4) */
+.queue { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 12px; }
+.queue__group { padding: 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); }
+.queue__title { margin-bottom: 8px; font-size: 0.9rem; color: var(--muted); }
+.chip {
+  display: inline-block;
+  margin: 3px;
+  padding: 3px 10px;
+  border: 1px solid var(--muted);
+  border-radius: 999px;
+  font: 0.95rem var(--mono);
+}
+.chip.is-you { border: 2px solid var(--orange); color: var(--orange); font-weight: 500; }
+
+/* Chain demo (scene 6) */
+.blocks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.blk { padding: 14px; border: 2px solid var(--text); border-radius: 12px; background: var(--bg); }
+.blk.is-bad { border-color: var(--red); }
+.blk h4 { margin: 0 0 8px; font-size: 1rem; }
+.blk .readout { margin-top: 10px; }
+.blk .field { margin-top: 10px; }
+.blk .field input[type="text"] { min-height: 44px; padding: 0 8px; font-size: 0.9rem; border-color: var(--orange); }
+
 /* 7. Footer ─────────────────────────────────────────────────── */
 .footer, .noscript {
   max-width: 720px;
@@ -301,6 +362,7 @@ svg .avatar__name { text-anchor: middle; fill: var(--muted); }
   .step:last-child { margin-bottom: 22vh; }
 
   .try { padding: 22px 18px; margin-bottom: 10vh; }
+  .queue, .blocks { grid-template-columns: 1fr; }
   .sig__message { padding: 12px; font-size: 0.95rem; }
   .sig__message input { width: 4.2em; }
 }

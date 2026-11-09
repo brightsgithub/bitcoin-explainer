@@ -14,8 +14,14 @@
 </head>
 <body>
 
+  <!--
+    Each scene is a <section data-scene="NAME">. js/main.js loads
+    js/scenes/NAME.js for it. Captions live here; drawings and demos
+    live in the scene's JavaScript file.
+  -->
+
   <!-- ───────────── Title ───────────── -->
-  <header class="hero" id="intro">
+  <header class="hero" id="intro" data-scene="00-intro">
     <p class="eyebrow">An interactive explainer</p>
     <h1>How Bitcoin works</h1>
     <p class="hero__lede">Money that no bank or government runs, kept honest by maths and by thousands of computers checking each other. Scroll to see how.</p>
@@ -26,7 +32,7 @@
   <main>
 
     <!-- ───────────── Scene 1: the problem ───────────── -->
-    <section class="scene" id="problem">
+    <section class="scene" id="problem" data-scene="01-problem">
       <header class="scene__head">
         <p class="eyebrow">Scene 1</p>
         <h2>The problem: money without a bank</h2>
@@ -62,8 +68,45 @@
       </div>
     </section>
 
+    <!-- ───────────── Scene 2: wallets and keys ───────────── -->
+    <section class="scene" id="wallets" data-scene="02-wallets">
+      <header class="scene__head">
+        <p class="eyebrow">Scene 2</p>
+        <h2>Wallets and keys</h2>
+      </header>
+
+      <div class="scene__body">
+        <div class="scene__stage" data-stage></div>
+
+        <div class="scene__steps">
+          <article class="step">
+            <p>To use Bitcoin you don't open an account. Your wallet app simply picks an enormous random number. That number is your <strong>private key</strong>.</p>
+          </article>
+          <article class="step">
+            <p>From the private key, maths produces a <strong>public key</strong>, and from that an <strong>address</strong>. It only works in one direction: nobody can run it backwards.</p>
+          </article>
+          <article class="step">
+            <p>The address is like an account number. Give it to anyone who wants to pay you.</p>
+          </article>
+          <article class="step">
+            <p>The private key is the only pen that can sign for your coins. Anyone who gets hold of it can spend them, and there is no "forgot my password".</p>
+          </article>
+          <article class="step">
+            <p>So a wallet doesn't really hold coins. It holds keys. The coins are entries on the shared ledger, and the keys prove which ones are yours to spend.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="try">
+        <p class="eyebrow">Try it</p>
+        <h3>Make a wallet</h3>
+        <p>Your browser will pick a random private key and work out the public key and address from it. Press again for a completely different set.</p>
+        <div data-demo></div>
+      </div>
+    </section>
+
     <!-- ───────────── Scene 3: a transaction ───────────── -->
-    <section class="scene" id="transaction">
+    <section class="scene" id="transaction" data-scene="03-transaction">
       <header class="scene__head">
         <p class="eyebrow">Scene 3</p>
         <h2>A transaction: sending coins</h2>
@@ -102,10 +145,256 @@
       </div>
     </section>
 
+    <!-- ───────────── Scene 4: the mempool ───────────── -->
+    <section class="scene" id="mempool" data-scene="04-mempool">
+      <header class="scene__head">
+        <p class="eyebrow">Scene 4</p>
+        <h2>The mempool: the waiting room</h2>
+      </header>
+
+      <div class="scene__body">
+        <div class="scene__stage" data-stage></div>
+
+        <div class="scene__steps">
+          <article class="step">
+            <p>Alice's transaction passes from computer to computer, and within seconds most of the network has seen it.</p>
+          </article>
+          <article class="step">
+            <p>Each computer checks it first. Is the signature valid? Has this coin been spent already? If it passes, it joins that computer's waiting area: the <strong>mempool</strong>.</p>
+          </article>
+          <article class="step">
+            <p>It isn't alone. Thousands of other transactions are waiting too, each offering a fee.</p>
+          </article>
+          <article class="step">
+            <p>Space in the next block is limited, so miners usually pick the transactions that pay the most. A low fee can mean a long wait.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="try">
+        <p class="eyebrow">Try it</p>
+        <h3>Choose your fee</h3>
+        <p>Eleven other transactions are already waiting. Drag the slider to set your fee and see how soon you'd get in.</p>
+        <div data-demo></div>
+      </div>
+    </section>
+
+    <!-- ───────────── Scene 5: hashing ───────────── -->
+    <section class="scene" id="hashing" data-scene="05-hashing">
+      <header class="scene__head">
+        <p class="eyebrow">Scene 5</p>
+        <h2>Hashing: digital fingerprints</h2>
+      </header>
+
+      <div class="scene__body">
+        <div class="scene__stage" data-stage></div>
+
+        <div class="scene__steps">
+          <article class="step">
+            <p>Before going further, we need one tool. A <strong>hash function</strong> takes any text and turns it into a fixed-length fingerprint, called a hash. Bitcoin uses one named SHA-256.</p>
+          </article>
+          <article class="step">
+            <p>The same text always gives the same fingerprint. Every time, on every computer.</p>
+          </article>
+          <article class="step">
+            <p>Change a single letter and the fingerprint changes completely, in a way no one can predict.</p>
+          </article>
+          <article class="step">
+            <p>And it only goes one way. Given a fingerprint, there is no way to work out the text that made it, other than guessing.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="try">
+        <p class="eyebrow">Try it</p>
+        <h3>Hash anything</h3>
+        <p>Type in the box. This is the real SHA-256, running in your browser. Characters that changed since your last keystroke are highlighted.</p>
+        <div data-demo></div>
+      </div>
+    </section>
+
+    <!-- ───────────── Scene 6: blocks and the chain ───────────── -->
+    <section class="scene" id="chain" data-scene="06-chain">
+      <header class="scene__head">
+        <p class="eyebrow">Scene 6</p>
+        <h2>Blocks and the chain</h2>
+      </header>
+
+      <div class="scene__body">
+        <div class="scene__stage" data-stage></div>
+
+        <div class="scene__steps">
+          <article class="step">
+            <p>About every ten minutes, a batch of waiting transactions is bundled together into a <strong>block</strong>.</p>
+          </article>
+          <article class="step">
+            <p>Each block gets a fingerprint: the hash of everything inside it.</p>
+          </article>
+          <article class="step">
+            <p>Here is the clever part. Every block also records the fingerprint of the block before it. That links them, one after another, into a chain: the <strong>blockchain</strong>.</p>
+          </article>
+          <article class="step">
+            <p>Now suppose someone quietly edits an old transaction. That block's contents change, so its fingerprint changes too.</p>
+          </article>
+          <article class="step">
+            <p>The next block still records the old fingerprint, so the link snaps. Fixing it would change that block's fingerprint as well, breaking the one after it, and so on down the chain. The tampering is obvious to everyone.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="try">
+        <p class="eyebrow">Try it</p>
+        <h3>Tamper with a block</h3>
+        <p>Three linked blocks, with real hashes. Edit the transactions in an early block and see what happens to the ones after it.</p>
+        <div data-demo></div>
+      </div>
+    </section>
+
+    <!-- ───────────── Scene 7: mining ───────────── -->
+    <section class="scene" id="mining" data-scene="07-mining">
+      <header class="scene__head">
+        <p class="eyebrow">Scene 7</p>
+        <h2>Mining and proof of work</h2>
+      </header>
+
+      <div class="scene__body">
+        <div class="scene__stage" data-stage></div>
+
+        <div class="scene__steps">
+          <article class="step">
+            <p>Bitcoin makes blocks hard to create, on purpose. A block only counts if its fingerprint starts with a required run of zeros.</p>
+          </article>
+          <article class="step">
+            <p>Fingerprints can't be steered, so the only way is trial and error. Miners add a throwaway number, the <strong>nonce</strong>, hash the block, and look. Wrong? Change the nonce and try again. Every guess costs electricity.</p>
+          </article>
+          <article class="step">
+            <p>Miners around the world make hundreds of quintillions of guesses every second. Whoever hits a valid fingerprint first adds the block and earns a reward. The difficulty adjusts so this takes about ten minutes.</p>
+          </article>
+          <article class="step">
+            <p>Checking the winner takes a single hash. Hard to find, instant to verify: that is <strong>proof of work</strong>.</p>
+          </article>
+          <article class="step">
+            <p>This is what protects the chain. To rewrite an old block, a cheat must redo its work and the work of every block since, while the rest of the world keeps adding new ones. They fall further and further behind.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="try">
+        <p class="eyebrow">Try it</p>
+        <h3>Mine a block</h3>
+        <p>Your browser will try nonce after nonce until the hash starts with enough zeros. Each extra zero makes it about sixteen times harder.</p>
+        <div data-demo></div>
+      </div>
+    </section>
+
+    <!-- ───────────── Scene 8: the network ───────────── -->
+    <section class="scene" id="network" data-scene="08-network">
+      <header class="scene__head">
+        <p class="eyebrow">Scene 8</p>
+        <h2>The network and consensus</h2>
+      </header>
+
+      <div class="scene__body">
+        <div class="scene__stage" data-stage></div>
+
+        <div class="scene__steps">
+          <article class="step">
+            <p>Bitcoin runs on tens of thousands of computers around the world, called <strong>nodes</strong>. Each keeps its own complete copy of the blockchain.</p>
+          </article>
+          <article class="step">
+            <p>When a miner finds a block, it passes it to its neighbours. Each node checks every rule for itself before passing it on. Nobody takes anybody's word for anything.</p>
+          </article>
+          <article class="step">
+            <p>Sometimes two miners find a block at almost the same moment, and for a while the network holds two versions of the latest block.</p>
+          </article>
+          <article class="step">
+            <p>The tie breaks itself. Whichever version gets the next block built on top of it has more work behind it, and every node switches to that chain. In practice that is the longest one.</p>
+          </article>
+          <article class="step">
+            <p>This is why people wait for <strong>confirmations</strong>. Every block added on top of yours makes your payment harder to undo. Six is the traditional rule of thumb for large amounts.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="try">
+        <p class="eyebrow">Try it</p>
+        <h3>Break a tie</h3>
+        <p>The network has split: half the nodes follow the top chain, half the bottom. Let a miner extend one of them.</p>
+        <div data-demo></div>
+      </div>
+    </section>
+
+    <!-- ───────────── Scene 9: supply ───────────── -->
+    <section class="scene" id="supply" data-scene="09-supply">
+      <header class="scene__head">
+        <p class="eyebrow">Scene 9</p>
+        <h2>Supply: 21 million, and no more</h2>
+      </header>
+
+      <div class="scene__body">
+        <div class="scene__stage" data-stage></div>
+
+        <div class="scene__steps">
+          <article class="step">
+            <p>Where do bitcoins come from? The miner who wins each block is allowed to create a fixed number of brand-new coins: the <strong>block reward</strong>. It is the only way bitcoins are made.</p>
+          </article>
+          <article class="step">
+            <p>In 2009 the reward was 50 bitcoin. Every 210,000 blocks, roughly four years, it is cut in half. Each cut is called a <strong>halving</strong>.</p>
+          </article>
+          <article class="step">
+            <p>Since the 2024 halving, each block creates 3.125 new bitcoin. The next one, expected in 2028, will take that down to 1.5625.</p>
+          </article>
+          <article class="step">
+            <p>Keep halving and the total can never pass a ceiling. For Bitcoin, that ceiling is just under <strong>21 million</strong> coins. About 95% of them already exist.</p>
+          </article>
+          <article class="step">
+            <p>The last new coins are expected around the year 2140. After that, miners will be paid by transaction fees alone. Nobody can print extra: every node checks the reward in every block.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="try">
+        <p class="eyebrow">Try it</p>
+        <h3>Travel through the halvings</h3>
+        <p>Drag the year to see the block reward at that time and how many bitcoin exist.</p>
+        <div data-demo></div>
+      </div>
+    </section>
+
+    <!-- ───────────── Recap ───────────── -->
+    <section class="scene" id="recap" data-scene="10-recap">
+      <header class="scene__head">
+        <p class="eyebrow">Recap</p>
+        <h2>The whole journey</h2>
+      </header>
+
+      <div class="scene__body">
+        <div class="scene__stage" data-stage></div>
+
+        <div class="scene__steps">
+          <article class="step">
+            <p><strong>Sign.</strong> Alice writes a transaction and signs it with her private key.</p>
+          </article>
+          <article class="step">
+            <p><strong>Wait.</strong> It spreads across the network and sits in the mempool.</p>
+          </article>
+          <article class="step">
+            <p><strong>Mine.</strong> A miner bundles it into a block and spends real energy finding a valid hash.</p>
+          </article>
+          <article class="step">
+            <p><strong>Link.</strong> The block records the hash of the one before it, extending the chain.</p>
+          </article>
+          <article class="step">
+            <p><strong>Agree.</strong> Every node checks the block and adds it to its own copy. No bank and no one in charge: just rules that anyone can verify.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer class="footer">
-    <p>Preview build: scenes 1 and 3. Still to come: wallets and keys, the mempool, hashing, blocks and the chain, mining, the network, and supply.</p>
+    <p>Built with plain HTML, SVG and GSAP. Some details are simplified for clarity; the source code notes each one.</p>
   </footer>
 
   <noscript>

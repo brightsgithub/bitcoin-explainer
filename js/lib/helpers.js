@@ -22,6 +22,23 @@ export function dur(seconds) {
   return reducedMotion() ? 0 : seconds;
 }
 
+/** True when the browser's built-in cryptography is available (https or localhost). */
+export function hasCrypto() {
+  return Boolean(window.crypto?.subtle);
+}
+
+/** Real SHA-256 of some text (or raw bytes), as 64 hexadecimal characters. */
+export async function sha256Hex(input) {
+  const bytes = typeof input === 'string' ? new TextEncoder().encode(input) : input;
+  const digest = await crypto.subtle.digest('SHA-256', bytes);
+  return toHex(digest);
+}
+
+/** Bytes → hexadecimal text. */
+export function toHex(buffer) {
+  return [...new Uint8Array(buffer)].map((b) => b.toString(16).padStart(2, '0')).join('');
+}
+
 /** Put a scene's SVG into its stage and return the <svg> element. */
 export function mountStage(container, svgMarkup) {
   const stage = container.querySelector('[data-stage]');

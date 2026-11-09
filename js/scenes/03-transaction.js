@@ -239,9 +239,8 @@ async function initDemo(root) {
 
 // ── Start ──────────────────────────────────────────────────────────────────
 
-export function initTransaction() {
-  const section = document.querySelector('#transaction');
-  const svg = mountStage(section.querySelector('.scene__body'), SVG);
+export function init(section) {
+  const svg = mountStage(section, SVG);
   driveScene(section, buildTimeline(svg));
   initDemo(section.querySelector('[data-demo]')).catch((error) => console.error('Signature demo failed', error));
 }

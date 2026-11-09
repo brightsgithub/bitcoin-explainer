@@ -20,8 +20,8 @@ const SVG = `
   ).join('')}
 </svg>`;
 
-export function initIntro() {
-  const svg = mountStage(document.querySelector('#intro'), SVG);
+export function init(section) {
+  const svg = mountStage(section, SVG);
   const q = gsap.utils.selector(svg);
 
   gsap.set(q('.i-block'), { opacity: 0, y: 16 });
